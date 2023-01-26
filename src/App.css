@@ -131,3 +131,8 @@ form button:hover{
 h1{
   text-align: center;
 }
+
+.active-page{
+  background-color: #4d7986;
+  color: #fff;
+}

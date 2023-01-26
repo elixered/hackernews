@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import NewsCard from "./components/NewsCard";
 import ReactPaginate from "react-paginate";
+
 const NewsPage = () => {
     const [articles, setArticles] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -26,8 +27,8 @@ const NewsPage = () => {
                 const { data } = await axios.get("https://hn.algolia.com/api/v1/search?", {
                     params: { page: currentPage, query, tags: "story" },
                 });
-                console.log(data);
                 const { hits, nbPages } = data;
+                hits.sort((a, b) => (a.points > b.points) ? -11 : 1);
                 setArticles(hits);
                 setTotalPages(nbPages);
             } catch (err) {
